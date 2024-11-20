@@ -74,10 +74,15 @@
             // Get the search term or URL
             const query = searchInput.value.trim();
 
-            // Redirect to index.js with the query
-            if (query) {
-                window.location.href = `index.js?q=${encodeURIComponent(query)}`;
-            }
+            // Define the Ultraviolet base URL
+            const ultravioletBaseURL = "https://fuzzy-potato-4jgpxvp4jwjrfj59g-8080.app.github.dev/";
+
+            // Determine if the query is a URL or search term
+            const isURL = query.startsWith('http://') || query.startsWith('https://');
+            const target = isURL ? query : `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+
+            // Redirect to the Ultraviolet proxy with the target URL
+            window.location.href = ultravioletBaseURL + encodeURIComponent(target);
         });
     </script>
 </body>
