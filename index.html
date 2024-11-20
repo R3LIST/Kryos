@@ -3,59 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/cb7290d6de.js" crossorigin="anonymous"></script>
-    <title>Kryos</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/947180059196784670/1308227674636030154/IMG_4477.png?ex=673f27b7&is=673dd637&hm=bd3e571aa0afb39a40dbeddbe42c2e2fc740e650c5e3ae85f455934574b1706e&">
+    <title>Search Proxy</title>
     <style>
-body{
-        color: #1a1a1a;
-        background-color: #1a1a1a;
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-}
-        
+        .search-container {
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px solid darkred;
+            background-color: black;
+            color: white;
+            outline: none;
+        }
+
+        .search-bar::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            margin-top: 20px;
+            padding: 10px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            background-color: darkred;
+            color: white;
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: red;
+        }
     </style>
-   
 </head>
-<br>
-<br>
-<br>
-<h1 class="h1a">about:blank loader BETA😉 this prob does not work</h1>
-<h1 class="h1d">(Add https://)</h1>
-    <h3 class="h1d">https://lichgames.s3.amazonaws.com/index.html</h3>
-    <h3 class="h1d"> https://unblocked-games.s3.amazonaws.com/index.html</h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<script src="index.js"></script>
-  <script>
-    function validURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-  return !!pattern.test(str);
-}
-    function go() {
-      var page = new ABC({
-        "type": "blank",
-        "url": validURL(document.querySelector('input').value) ? document.querySelector('input').value : window.location.origin
-      })
-      page.open()
-    }
-  </script>
-
-<div class="inputContainer">
-  <input type="url" placeholder="https://" onkeydown="if(event.key==='Enter') go()" size="25" class="inputText" autofocus>
-<button onclick="go()" class="inputGo">Go</button>
-</div>
-
-
 <body>
+    <div class="search-container">
+        <h1>Search Unblocked</h1>
+        <form id="search-form">
+            <input type="text" id="search-input" class="search-bar" placeholder="Enter URL or search term..." required>
+            <br>
+            <button type="submit" class="search-btn">Go</button>
+        </form>
+    </div>
 
+    <script>
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get the search term or URL
+            const query = searchInput.value.trim();
+
+            // Redirect to index.js with the query
+            if (query) {
+                window.location.href = `index.js?q=${encodeURIComponent(query)}`;
+            }
+        });
+    </script>
 </body>
 </html>
